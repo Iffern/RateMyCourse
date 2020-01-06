@@ -1,0 +1,12 @@
+.grid{
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+app-course:nth-child(odd){
+  background-color: 	#f0cdc2;
+}
+
+app-course:nth-child(even) {
+  background-color: #faecd1;
+}

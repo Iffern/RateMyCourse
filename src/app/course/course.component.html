@@ -1,0 +1,9 @@
+<div class="course">
+  <p><button class="button" (click)="remove()">Usuń</button></p>
+<img class="logo" src="{{course.image}}" alt="Course image">
+  <star-rating value="{{course.rating.currentRating}}" totalstars="5" checkedcolor="gold"
+               uncheckedcolor="white" size="32px" readonly="false" (rate)="rating($event)"></star-rating>
+  <h3 class="name">{{course.name}}</h3>
+</div>
+
+

@@ -1,0 +1,47 @@
+<div class="form">
+  <form [formGroup]="courseForm" (ngSubmit)="addCourse()">
+    <mat-form-field class="full-width">
+    <mat-label>Nazwa:</mat-label>
+    <input matInput name="name" formControlName="name">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['name']"></app-error-message>
+    <mat-form-field class="full-width">
+    <mat-label>Liczba ECTS:</mat-label><input matInput name="ECTS" formControlName="ECTS">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['ECTS']"></app-error-message>
+    <mat-form-field class="full-width">
+    <mat-label>Semestr:</mat-label>
+    <mat-select formControlName="semester">
+      <mat-option *ngFor="let semester of keys(semesters)" [value]="semester">{{semesters[semester]}}</mat-option>
+    </mat-select>
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['semester']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Forma kursu:</mat-label>
+     <mat-select formControlName="forms" multiple>
+       <mat-option *ngFor="let form of keys(forms)" [value]="form">{{forms[form]}}</mat-option>
+     </mat-select>
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['forms']"></app-error-message>
+    <mat-form-field class="full-width">
+    <mat-label>Maksymalna liczba studentów:</mat-label><input matInput name="maxparticipants" formControlName="maxparticipants">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['maxparticipants']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Prowadzący (imię):</mat-label><input matInput name="teacherName" formControlName="teacherName">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['teacherName']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Prowadzący (nazwisko):</mat-label><input matInput name="teacherSurname" formControlName="teacherSurname">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['teacherSurname']"></app-error-message>
+    <mat-form-field class="full-width">
+    <mat-label>Krótki opis przedmiotu:</mat-label><input matInput name="description" formControlName="description">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+    <mat-label>Logo:</mat-label><input matInput name="logo" formControlName="logo">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['logo']"></app-error-message>
+    <button [disabled]="!courseForm.valid" type="submit">Wyślij</button>
+  </form>
+</div>

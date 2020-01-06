@@ -1,0 +1,33 @@
+.logo{
+  width: 30vh;
+  height: 30vh;
+}
+
+.course{
+  grid-column: span 1;
+  text-align: center;
+  padding: 6vh;
+  border-radius: 0.5vh;
+  border: 0.5vh solid #004d4d;
+  margin: 3vh;
+  min-height: 70vh;
+  min-width:20vw;
+}
+
+.name{
+  font-family: "Century Gothic", sans-serif;
+  font-size: 4vh;
+  color: #004d4d;
+}
+
+.button{
+ color: #ff9999;
+  font-weight: bold;
+  font-family: "Century Gothic",sans-serif;
+  font-size: 2vh;
+}
+
+.course p{
+  margin-bottom: 5vh;
+  text-align: right;
+}
