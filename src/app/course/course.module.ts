@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AppComponent} from '../app.component';
-import {CourseService} from '../course.service';
+import {CourseService} from '../services/course.service';
 import { RatingModule } from 'ng-starrating';
 
 

@@ -6,10 +6,16 @@ import {Course} from '../models/Course';
 })
 export class CourseRatingFilterPipe implements PipeTransform {
 
-  transform(courses: Course[], searchRate: number): Course[] {
+  transform(courses: Course[], searchRate: number[]): Course[] {
     if (!courses) { return []; }
     if (!searchRate) {return courses; }
-    return courses.filter(course => Math.floor(course.rating.currentRating) === searchRate);
+    const newCourses: Course[] = [];
+    for ( const rate of searchRate ) {
+      for (const course of courses) {
+        if (course.rating.currentRating === rate) {newCourses.push(course); }
+      }
+    }
+    return newCourses;
   }
 
 }

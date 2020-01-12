@@ -1,10 +1,19 @@
 .title{
   text-align: center;
   font-family: "Century Gothic", sans-serif;
+  font-weight: bold;
   font-size: 10vh;
   color: teal;
 }
 
-.background{
-  padding: 4vh;
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 20vw;
+}
+
+main {
+  padding: 10vh;
 }

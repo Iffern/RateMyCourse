@@ -1,4 +1,12 @@
-<div class="background">
-<h1 class="title">{{title}}</h1>
-<app-course-list></app-course-list>
-</div>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+      <app-navigation-sidenav (sidenavClose)="sidenav.close()"></app-navigation-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-navigation-header (sidenavToggle)="sidenav.toggle()"></app-navigation-header>
+      <main>
+        <div class="title">{{title}}</div>
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

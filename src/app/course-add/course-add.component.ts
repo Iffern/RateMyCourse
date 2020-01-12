@@ -3,11 +3,11 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {FormOfCourse} from '../enums/FormOfCourse';
 import {Semester} from '../enums/Semester';
 import {CustomValidators} from '../validators/CustomValidators';
-import {CourseComponent} from '../course/course.component';
 import {Course} from '../models/Course';
 import {Teacher} from '../models/Teacher';
 import {CourseDescription} from '../models/Course-Description';
 import {Rating} from '../models/Rating';
+import {CourseService} from '../services/course.service';
 
 @Component({
   selector: 'app-course-add',
@@ -19,16 +19,17 @@ export class CourseAddComponent implements OnInit {
 
   courseForm: FormGroup;
   keys = Object.keys;
-  forms = FormOfCourse;
+  forms = [FormOfCourse.Project, FormOfCourse.Exercises, FormOfCourse.Lecture, FormOfCourse.Laboratory];
   semesters = Semester;
   private course: Course;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private service: CourseService) {
+  }
 
   ngOnInit(): void {
     this.courseForm = this.formBuilder.group({
       name: ['', Validators.required],
-      ECTS: ['', [Validators.required, Validators.min(0), Validators.max(30), CustomValidators.numeric]],
+      ECTS: ['', [Validators.required, Validators.min(0), Validators.max(8), CustomValidators.numeric]],
       semester: ['', Validators.required],
       forms: ['', Validators.required],
       maxparticipants: ['', [Validators.required, Validators.min(0), CustomValidators.numeric]],
@@ -41,17 +42,23 @@ export class CourseAddComponent implements OnInit {
 
   addCourse(): void {
     const teacher: Teacher = {firstname: this.courseForm.value.teacherName, lastname: this.courseForm.value.teacherSurname};
-    const teachers: Teacher[] = [teacher];
-    const descriptio: CourseDescription = {summary: this.courseForm.value.description, academicTeachers: teachers};
+    const descriptio: CourseDescription = {summary: this.courseForm.value.description, academicTeachers: teacher};
     const rate: Rating = {currentRating: 0, numberOfRates: 0, sumOfRates: 0};
     if (this.courseForm.value.logo == null || this.courseForm.value.logo === '') {
-        this.course = {name: this.courseForm.value.name, ECTS: this.courseForm.value.ECTS, image:  'assets/img/default.png',
+      this.course = {
+        id: this.service.getCourseID(), name: this.courseForm.value.name,
+        ECTS: this.courseForm.value.ECTS, image: 'assets/img/default.png',
         description: descriptio, maxParticipants: this.courseForm.value.maxparticipants, semester: this.courseForm.value.semester,
-        form: this.courseForm.value.form, rating: rate};
+        form: this.courseForm.value.forms, rating: rate
+      };
     } else {
-      this.course = {name: this.courseForm.value.name, ECTS: this.courseForm.value.ECTS, image:  this.courseForm.value.logo,
-    description: descriptio, maxParticipants: this.courseForm.value.maxparticipants, semester: this.courseForm.value.semester,
-    form: this.courseForm.value.form, rating: rate}; }
-    this.courseAdded.emit(this.course);
+      this.course = {
+        id: this.service.getCourseID(), name: this.courseForm.value.name,
+        ECTS: this.courseForm.value.ECTS, image: this.courseForm.value.logo,
+        description: descriptio, maxParticipants: this.courseForm.value.maxparticipants, semester: this.courseForm.value.semester,
+        form: this.courseForm.value.forms, rating: rate
+      };
+    }
+    this.service.addCourse(this.course);
   }
 }

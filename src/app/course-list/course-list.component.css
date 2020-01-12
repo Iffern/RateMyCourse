@@ -10,3 +10,14 @@ app-course:nth-child(odd){
 app-course:nth-child(even) {
   background-color: #faecd1;
 }
+
+.filter{
+  grid-column: span 3;
+  width: 30%;
+}
+
+
+.filter h4{
+  color: #004d4d;
+}
+

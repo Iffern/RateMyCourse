@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Course} from '../models/Course';
-import {CourseService} from '../course.service';
+import {CourseService} from '../services/course.service';
 import {Semester} from '../enums/Semester';
+import {FilterService} from '../services/filter.service';
 
 @Component({
   selector: 'app-course-list',
@@ -9,16 +10,18 @@ import {Semester} from '../enums/Semester';
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit {
-  searchRate: number;
-  ects: number;
+  searchRate: number[];
+  ects: number[];
   name: string;
-  keys = [Semester.First, Semester.Second, Semester.Third, Semester.Fourth, Semester.Fifth, Semester.Sixth];
-  rating = [0, 1, 2, 3, 4, 5];
-  courseSemester: Semester;
-  constructor(private courseService: CourseService) {}
+  courseSemester: Semester[];
+  constructor(private courseService: CourseService, private filterService: FilterService) {}
 
   getCourses(): void {
     this.courseService.getCourses();
+    this.filterService.rating$.subscribe(x => {this.searchRate = x; });
+    this.filterService.name$.subscribe(x => {this.name = x; });
+    this.filterService.ectses$.subscribe(x => {this.ects = x; });
+    this.filterService.semesters$.subscribe(x => {this.courseSemester = x; });
   }
 
   removeCourse(course: Course): void {

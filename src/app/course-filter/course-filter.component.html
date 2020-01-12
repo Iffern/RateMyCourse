@@ -1,0 +1,11 @@
+<h4>Filtruj</h4>
+<div>Nazwa kursu:<input matInput [(ngModel)]="name" (ngModelChange)="filterService.getName(name)"></div>
+<div>Ocena kursu:<mat-select multiple [(ngModel)]="searchRate" (ngModelChange)="filterService.getRating(searchRate)">
+  <mat-option *ngFor="let rate of rating" [value]="rate">{{rate.toString()}}</mat-option>
+</mat-select></div>
+<div>Liczba ECTS:<mat-select multiple [(ngModel)]="ects" (ngModelChange)="filterService.getECTS(ects)">
+  <mat-option *ngFor="let ects of allects" [value]="ects">{{ects.toString()}}</mat-option>
+</mat-select></div>
+<div>Semestr:<mat-select multiple [(ngModel)]="courseSemester" (ngModelChange)="filterService.getSemesters(courseSemester)">
+  <mat-option *ngFor="let semester of keys" [value]="semester">{{semester.toString()}}</mat-option>
+</mat-select> </div>

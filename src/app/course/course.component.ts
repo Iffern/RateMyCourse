@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {Course} from '../models/Course';
-import {StarRatingComponent} from 'ng-starrating';
+import {Router} from '@angular/router';
+import {CourseService} from '../services/course.service';
 
 @Component({
   selector: 'app-course',
@@ -13,16 +14,16 @@ export class CourseComponent implements OnInit {
   @Output() courseDeleted = new EventEmitter<Course>();
   @Output() courseRated = new EventEmitter<{course: Course, newValue: number}>();
 
+  constructor(private router: Router, private service: CourseService) {}
+
   ngOnInit(): void {
   }
 
   remove(): void {
     this.courseDeleted.emit(this.course);
   }
-
-  rating($event: { oldValue: number; newValue: number; starRating: StarRatingComponent }) {
-    this.course.rating.sumOfRates  = this.course.rating.sumOfRates + $event.newValue;
-    this.course.rating.numberOfRates = this.course.rating.numberOfRates + 1;
-    this.course.rating.currentRating = this.course.rating.sumOfRates / this.course.rating.numberOfRates;
+  details(id: number): void {
+    this.service.getDetails(id);
+    this.router.navigate(['course-details', id]);
   }
 }

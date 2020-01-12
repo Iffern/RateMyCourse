@@ -1,6 +1,6 @@
 import {Teacher} from './Teacher';
 
 export interface CourseDescription {
-academicTeachers: Array<Teacher>;
+academicTeachers: Teacher;
 summary: string;
 }

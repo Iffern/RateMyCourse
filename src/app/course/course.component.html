@@ -2,8 +2,9 @@
   <p><button class="button" (click)="remove()">Usuń</button></p>
 <img class="logo" src="{{course.image}}" alt="Course image">
   <star-rating value="{{course.rating.currentRating}}" totalstars="5" checkedcolor="gold"
-               uncheckedcolor="white" size="32px" readonly="false" (rate)="rating($event)"></star-rating>
+               uncheckedcolor="white" size="32px" readonly="true"></star-rating>
   <h3 class="name">{{course.name}}</h3>
+  <p><mat-button-toggle [routerLink]="['/course-details', course.id]">Szczegóły</mat-button-toggle></p>
 </div>
 
 

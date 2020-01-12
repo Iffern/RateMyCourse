@@ -5,6 +5,7 @@ import {Rating} from './Rating';
 
 
 export interface Course {
+  id: number;
   name: string;
   ECTS: number;
   semester: Semester;

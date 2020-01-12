@@ -6,10 +6,16 @@ import {Course} from '../models/Course';
 })
 export class CourseECTSFilterPipe implements PipeTransform {
 
-  transform(courses: Course[], ects: number): Course[] {
+  transform(courses: Course[], ects: number[]): Course[] {
     if (!courses) { return []; }
     if (!ects) {return courses; }
-    return courses.filter(course => course.ECTS === ects);
+    const newCourses: Course[] = [];
+    for ( const ect of ects) {
+      for (const course of courses) {
+        if (course.ECTS === ect) {newCourses.push(course); }
+      }
+    }
+    return newCourses;
   }
 
 }

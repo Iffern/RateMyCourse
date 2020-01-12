@@ -6,11 +6,15 @@ import {Semester} from '../enums/Semester';
   name: 'courseSemesterFilter'
 })
 export class CourseSemesterFilterPipe implements PipeTransform {
-
-  transform(courses: Course[], semester: Semester): Course[] {
+  transform(courses: Course[], semesters: Semester[]): Course[] {
     if (!courses) { return []; }
-    if (!semester) {return courses; }
-    return courses.filter(course => course.semester === semester);
+    if (!semesters) {return courses; }
+    const newCourses: Course[] = [];
+    for ( const semester of semesters ) {
+      for (const course of courses) {
+        if (course.semester === semester) {newCourses.push(course); }
+      }
+    }
+    return newCourses;
   }
-
-}
+  }
