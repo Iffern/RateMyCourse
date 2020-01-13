@@ -2,7 +2,15 @@
   <a mat-list-item routerLink="/course-list" (click)="onSidenavClose()">
     <mat-icon>home</mat-icon> <span class="nav-caption">Lista kursów</span>
   </a>
+  <div *ngIf="isAdmin()">
   <a mat-list-item routerLink="/course-add" (click)="onSidenavClose()">
     <mat-icon>playlist_add</mat-icon> <span class="nav-caption">Dodaj nowy kurs</span>
   </a>
+  <a mat-list-item routerLink="/course-edit" (click)="onSidenavClose()">
+    <mat-icon>edit</mat-icon> <span class="nav-caption">Edytuj kursy</span>
+  </a>
+    <a mat-list-item routerLink="/admin" (click)="onSidenavClose()">
+      <mat-icon>person</mat-icon> <span class="nav-caption">Panel administracyjny</span>
+    </a>
+  </div>
 </mat-nav-list>

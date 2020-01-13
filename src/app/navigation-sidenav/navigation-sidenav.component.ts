@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Component({
   selector: 'app-navigation-sidenav',
@@ -8,7 +9,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class NavigationSidenavComponent implements OnInit {
   @Output() sidenavClose = new EventEmitter();
 
-  constructor() { }
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -17,4 +18,7 @@ export class NavigationSidenavComponent implements OnInit {
     this.sidenavClose.emit();
   }
 
+  isAdmin(): boolean {
+    return this.auth.isAdmin();
+  }
 }

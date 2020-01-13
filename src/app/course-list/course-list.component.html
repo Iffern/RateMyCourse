@@ -2,7 +2,15 @@
   <div class="filter">
   <app-course-filter></app-course-filter>
   </div>
+  <p class="control"> <mat-radio-group color="primary" (change)="paginate($event.value)">
+    <mat-radio-button [value]="3"> 3 </mat-radio-button>
+    <mat-radio-button [value]="6"> 6 </mat-radio-button>
+    <mat-radio-button [value]="12"> 12 </mat-radio-button>
+    <mat-radio-button [value]="24"> 24 </mat-radio-button>
+  </mat-radio-group></p>
   <app-course *ngFor="let course of (courseService.courses | courseRatingFilter : searchRate | courseECTSFilter : ects
-  | courseNameFilter : name | courseSemesterFilter : courseSemester)" [course]="course"
+  | courseNameFilter : name | courseSemesterFilter : courseSemester |
+  paginate: {itemsPerPage: items, currentPage: p})" [course]="course"
             (courseDeleted)=removeCourse($event)></app-course>
+  <p class="control"><pagination-controls (pageChange)="p = $event" ></pagination-controls></p>
 </div>

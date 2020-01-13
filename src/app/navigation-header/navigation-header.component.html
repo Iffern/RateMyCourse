@@ -11,7 +11,7 @@
   <a routerLink="/login">Logowanie</a>
     </ng-template>
   <ng-template #elseBlock>
-  <p>Witaj {{getCurrentUsername()}} </p>
+  <p>Witaj, {{getCurrentUsername()}}! </p>
   <a (click)="logOut()">Wyloguj</a>
   </ng-template>
 </mat-toolbar>

@@ -1,24 +1,38 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
-import {Course} from '../models/Course';
-import {UserTrackingService} from '@angular/fire/analytics';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {User} from 'firebase';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {FirestoreService} from './firestore.service';
-import {User} from '../models/User';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(public afAuth: AngularFireAuth, public dbSer: FirestoreService) {
+  Administration: string[];
+  data: AngularFirestoreCollection<unknown>;
+  constructor(public afAuth: AngularFireAuth, private dbSer: FirestoreService) {
+    afAuth.authState.subscribe(au => {
+      this.currentUser = !!au;
+    });
+    this.Administration = dbSer.getAdmins();
+  }
+  currentUser: boolean;
+
+  isAdmin(): boolean {
+    if (this.getCurrentUser() === null) {return false; } else {
+      return this.Administration.includes(this.getCurrentUser().email); }
+  }
+
+  getCurrentUser(): User|null {
+    return this.afAuth.auth.currentUser;
   }
 
   doRegister(value) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
-        .then( async res => this.dbSer.addUser(res.user.uid, new User(false, value.email, value.username, null)))
+        .then( userData => {userData.user.updateProfile({displayName: value.username}); } )
         .then(res => {
           resolve(res);
         }, err => reject(err));
@@ -37,6 +51,7 @@ export class AuthenticationService {
   doLogout() {
     return new Promise((resolve, reject) => {
       if (firebase.auth().currentUser) {
+        this.currentUser = false;
         this.afAuth.auth.signOut();
         resolve();
       } else {

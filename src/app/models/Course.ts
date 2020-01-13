@@ -8,10 +8,17 @@ export interface Course {
   id: number;
   name: string;
   ECTS: number;
-  semester: Semester;
-  form: Array<FormOfCourse>;
+  semester: string;
+  form: Array<string>;
   maxParticipants: number;
-  rating: Rating;
-  description: CourseDescription;
+  currentParticipants: number;
+  currentRating: number;
+  sumOfRates: number;
+  numberOfRates: number;
+  description: string;
+  teacherName: string;
+  teacherLastname: string;
   image: string;
+  studentsEnrolled: string[];
+  studentsVoted: string[];
 }

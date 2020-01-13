@@ -1,0 +1,54 @@
+<div class="form">
+  <h2>Edytuj wybrany kurs</h2>
+  <form [formGroup]="courseForm" (ngSubmit)="editCourse(pick)">
+    <mat-label>Wybierz kurs do edycji</mat-label>
+    <mat-select formControlName="pickedName" #pick>
+      <mat-option *ngFor="let course of courses" [value]="course.name">{{course.name}}</mat-option>
+    </mat-select>
+    <mat-form-field class="full-width">
+      <mat-label>Nazwa:</mat-label>
+      <input matInput name="name" formControlName="name">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['name']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Liczba ECTS:</mat-label><input matInput name="ECTS" formControlName="ECTS">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['ECTS']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Semestr:</mat-label>
+      <mat-select formControlName="semester">
+        <mat-option *ngFor="let semester of keys(semesters)" [value]="semesters[semester]">{{semesters[semester]}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['semester']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Forma kursu:</mat-label>
+      <mat-select formControlName="forms" multiple>
+        <mat-option *ngFor="let form of forms" [value]="form">{{form.toString()}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['forms']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Maksymalna liczba studentów:</mat-label><input matInput name="maxparticipants" formControlName="maxparticipants">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['maxparticipants']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Prowadzący (imię):</mat-label><input matInput name="teacherName" formControlName="teacherName">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['teacherName']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Prowadzący (nazwisko):</mat-label><input matInput name="teacherSurname" formControlName="teacherSurname">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['teacherSurname']"></app-error-message>
+    <mat-form-field class="full-width">
+      <mat-label>Krótki opis przedmiotu:</mat-label><input matInput name="description" formControlName="description">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Logo:</mat-label><input matInput name="logo" formControlName="logo">
+    </mat-form-field>
+    <app-error-message [control]="courseForm.controls['logo']"></app-error-message>
+    <mat-button-toggle [disabled]="!courseForm.valid">Edytuj</mat-button-toggle>
+  </form>
+  <p>{{editMessege}}</p>
+  <p><mat-button-toggle [routerLink]="['/course-list']">Powrót do listy kursów</mat-button-toggle></p>
+</div>

@@ -2,7 +2,6 @@
   width: 30vh;
   height: 30vh;
 }
-
 .course{
   grid-column: span 1;
   text-align: center;
@@ -10,8 +9,8 @@
   border-radius: 0.5vh;
   border: 0.5vh solid #004d4d;
   margin: 3vh;
+  min-width: 20vw;
   min-height: 83vh;
-  min-width:20vw;
 }
 
 .name{

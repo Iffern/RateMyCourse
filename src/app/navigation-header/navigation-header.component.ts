@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
 import {FirestoreService} from '../services/firestore.service';
+import {User} from '../models/User';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-navigation-header',
@@ -24,12 +26,11 @@ export class NavigationHeaderComponent implements OnInit {
   }
 
   ifLogged() {
-    if (this.authSer.afAuth.auth.currentUser == null) { return true; } else {this.currentUser = this.authSer.afAuth.auth.currentUser;
-                                                                             return false; }
+    return !this.authSer.currentUser;
   }
 
   getCurrentUsername() {
-    const userID = this.authSer.afAuth.auth.currentUser.uid;
-    return this.dbSer.getUsername(userID);
+    if (this.authSer.currentUser) {
+   return this.authSer.afAuth.auth.currentUser.displayName; }
   }
 }

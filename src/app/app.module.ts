@@ -15,7 +15,7 @@ import {
   MatButtonModule,
   MatButtonToggleModule, MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatPaginatorModule,
   MatRadioModule,
   MatSelectModule,
   MatSidenavModule,
@@ -36,8 +36,10 @@ import { NavigationHeaderComponent } from './navigation-header/navigation-header
 import { NavigationSidenavComponent } from './navigation-sidenav/navigation-sidenav.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ChooseUsernameComponent } from './choose-username/choose-username.component';
 import {AngularFireDatabaseModule} from '@angular/fire/database-deprecated';
+import { CourseEditComponent } from './course-edit/course-edit.component';
+import { AdminComponent } from './admin/admin.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/database-deprecated';
     NavigationSidenavComponent,
     LoginComponent,
     RegisterComponent,
-    ChooseUsernameComponent,
+    CourseEditComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +83,8 @@ import {AngularFireDatabaseModule} from '@angular/fire/database-deprecated';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatPaginatorModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

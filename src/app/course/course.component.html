@@ -1,7 +1,7 @@
 <div class="course">
-  <p><button class="button" (click)="remove()">Usuń</button></p>
+  <p><button *ngIf="isAdmin()" class="button" (click)="remove()">Usuń</button></p>
 <img class="logo" src="{{course.image}}" alt="Course image">
-  <star-rating value="{{course.rating.currentRating}}" totalstars="5" checkedcolor="gold"
+  <star-rating value="{{course.currentRating}}" totalstars="5" checkedcolor="gold"
                uncheckedcolor="white" size="32px" readonly="true"></star-rating>
   <h3 class="name">{{course.name}}</h3>
   <p><mat-button-toggle [routerLink]="['/course-details', course.id]">Szczegóły</mat-button-toggle></p>

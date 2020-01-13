@@ -1,0 +1,11 @@
+.container{
+  grid-template-columns: auto auto;
+  display: grid;
+  margin-top: 15vh;
+}
+
+.minicontainer{
+  grid-column: span 1;
+  width: 100%;
+  text-align: center;
+}

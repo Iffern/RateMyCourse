@@ -3,6 +3,7 @@ import {Course} from '../models/Course';
 import {CourseService} from '../services/course.service';
 import {Semester} from '../enums/Semester';
 import {FilterService} from '../services/filter.service';
+import {MatRadioChange} from '@angular/material';
 
 @Component({
   selector: 'app-course-list',
@@ -14,6 +15,8 @@ export class CourseListComponent implements OnInit {
   ects: number[];
   name: string;
   courseSemester: Semester[];
+  p = 0;
+  items = 3;
   constructor(private courseService: CourseService, private filterService: FilterService) {}
 
   getCourses(): void {
@@ -36,4 +39,8 @@ export class CourseListComponent implements OnInit {
     this.getCourses();
   }
 
+  paginate(i: number) {
+    console.log(i);
+    this.items = i;
+  }
 }

@@ -13,7 +13,7 @@
     <mat-form-field class="full-width">
     <mat-label>Semestr*:</mat-label>
     <mat-select formControlName="semester">
-      <mat-option *ngFor="let semester of keys(semesters)" [value]="semester">{{semesters[semester]}}</mat-option>
+      <mat-option *ngFor="let semester of keys(semesters)" [value]="semesters[semester]">{{semesters[semester]}}</mat-option>
     </mat-select>
     </mat-form-field>
     <app-error-message [control]="courseForm.controls['semester']"></app-error-message>
@@ -45,5 +45,6 @@
     <app-error-message [control]="courseForm.controls['logo']"></app-error-message>
     <button [disabled]="!courseForm.valid" type="submit">Wyślij</button>
   </form>
+  <p>{{addMessege}}</p>
   <p><mat-button-toggle [routerLink]="['/course-list']">Powrót do listy kursów</mat-button-toggle></p>
 </div>

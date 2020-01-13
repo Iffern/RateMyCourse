@@ -12,8 +12,6 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   errorMessage: string;
-  private usernameName: string;
-  private usernameAvailable: boolean;
 
   constructor(
     public authService: AuthenticationService,

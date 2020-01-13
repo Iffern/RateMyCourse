@@ -1,10 +1,10 @@
 <div class="details">
   <h1 class="title">{{course.name}}</h1>
   <img src="{{course.image}}" class="logo">
-  <star-rating value="{{course.rating.currentRating}}" totalstars="5" checkedcolor="gold"
-               uncheckedcolor="white" size="32px" readonly="false" (rate)="rating($event)"></star-rating>
-  <div class="info"><h3>Prowadzący: </h3><p> {{course.description.academicTeachers.firstname}}
-    {{course.description.academicTeachers.lastname}}</p></div>
+  <star-rating value="{{course.currentRating}}" totalstars="5" checkedcolor="gold"
+               uncheckedcolor="white" size="32px" readonly="{{!(isLogged() && isEnrolledAndNotVote())}}" (rate)="rating($event)"></star-rating>
+  <div class="info"><h3>Prowadzący: </h3><p> {{course.teacherName}}
+    {{course.teacherLastname}}</p></div>
   <div class="info"><h3>Liczba ECTS: </h3> <p>{{course.ECTS}}</p> </div>
   <div class="info"><h3>Semestr: </h3> <p>{{course.semester}}</p></div>
   <div class="info"><h3>Maksymalna liczba uczestników: </h3> <p>{{course.maxParticipants}}</p></div>
@@ -13,6 +13,8 @@
     <p *ngFor="let form of course.form"> {{form}}, </p>
   </div>
   <div class="description"><h3>Opis kursu:</h3>
-  <p>{{course.description.summary}}</p></div>
+  <p>{{course.description}}</p></div>
+  <p class="button"><mat-button-toggle *ngIf="isLogged()" (click)="enroll()">Zapisz się na kurs</mat-button-toggle> </p>
+  <p class="messege">{{errorMessege}}</p>
   <p class="button"><mat-button-toggle [routerLink]="['/course-list']">Powrót do listy kursów</mat-button-toggle></p>
 </div>

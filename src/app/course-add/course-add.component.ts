@@ -22,6 +22,7 @@ export class CourseAddComponent implements OnInit {
   forms = [FormOfCourse.Project, FormOfCourse.Exercises, FormOfCourse.Lecture, FormOfCourse.Laboratory];
   semesters = Semester;
   private course: Course;
+  addMessege = '';
 
   constructor(private formBuilder: FormBuilder, private service: CourseService) {
   }
@@ -48,17 +49,22 @@ export class CourseAddComponent implements OnInit {
       this.course = {
         id: this.service.getCourseID(), name: this.courseForm.value.name,
         ECTS: this.courseForm.value.ECTS, image: 'assets/img/default.png',
-        description: descriptio, maxParticipants: this.courseForm.value.maxparticipants, semester: this.courseForm.value.semester,
-        form: this.courseForm.value.forms, rating: rate
+        description: this.courseForm.value.description, maxParticipants: this.courseForm.value.maxparticipants, currentParticipants: 0,
+        semester: this.courseForm.value.semester,
+        form: this.courseForm.value.forms, currentRating: 0, numberOfRates: 0, sumOfRates: 0, studentsEnrolled: [], studentsVoted: [],
+        teacherName: this.courseForm.value.teacherName, teacherLastname: this.courseForm.value.teacherSurname
       };
     } else {
       this.course = {
         id: this.service.getCourseID(), name: this.courseForm.value.name,
         ECTS: this.courseForm.value.ECTS, image: this.courseForm.value.logo,
-        description: descriptio, maxParticipants: this.courseForm.value.maxparticipants, semester: this.courseForm.value.semester,
-        form: this.courseForm.value.forms, rating: rate
+        description: this.courseForm.value.description, maxParticipants: this.courseForm.value.maxparticipants, currentParticipants: 0,
+        semester: this.courseForm.value.semester,
+        form: this.courseForm.value.forms, currentRating: 0, numberOfRates: 0, sumOfRates: 0, studentsEnrolled: [], studentsVoted: [],
+        teacherName: this.courseForm.value.teacherName, teacherLastname: this.courseForm.value.teacherSurname
       };
     }
     this.service.addCourse(this.course);
+    this.addMessege = 'Dodano nowy kurs!';
   }
 }
