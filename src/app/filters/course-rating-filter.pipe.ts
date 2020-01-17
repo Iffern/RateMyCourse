@@ -12,7 +12,7 @@ export class CourseRatingFilterPipe implements PipeTransform {
     const newCourses: Course[] = [];
     for ( const rate of searchRate ) {
       for (const course of courses) {
-        if (course.currentRating === rate) {newCourses.push(course); }
+        if (Math.floor(course.currentRating) === rate) {newCourses.push(course); }
       }
     }
     return newCourses;

@@ -29,6 +29,7 @@ export class FirestoreService {
     this.firestore.collection('courses').get().subscribe(admin => {
       for (const elem of admin.docs) {
         courses.push({
+          ECTS: elem.get('ects'),
           name: elem.get('name'),
           currentParticipants: elem.get('currentParticipants'),
           currentRating: elem.get('currentRating'),

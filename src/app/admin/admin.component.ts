@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FirestoreService} from '../services/firestore.service';
-import {merge} from 'rxjs';
 import {AuthenticationService} from '../services/authentication.service';
 
 @Component({

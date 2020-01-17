@@ -20,6 +20,7 @@ export class CourseService {
     this.dbSer.coursePath.doc(course.id.toString()).set(
       {
         name: course.name,
+        ects: course.ECTS,
         currentParticipants: course.currentParticipants,
         currentRating: course.currentRating,
         description: course.description,
@@ -44,6 +45,7 @@ export class CourseService {
   }
   editCourse(course: Course): void {
     this.dbSer.coursePath.doc(course.id.toString()).update({
+      ects: course.ECTS,
       name: course.name,
       description: course.description,
       form: course.form,

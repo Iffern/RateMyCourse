@@ -68,3 +68,13 @@
   font-size: 3vh;
   text-align: right;
 }
+
+@media screen and (max-width: 1025px){
+  .details{
+    width: 90%;
+  }
+  .logo{
+    height:50vw;
+    width: 50vw;
+  }
+}

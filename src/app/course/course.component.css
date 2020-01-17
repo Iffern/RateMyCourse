@@ -30,3 +30,23 @@
   margin-bottom: 5vh;
   text-align: right;
 }
+@media screen and (max-width: 1025px){
+  .course{
+    width: 30vw;
+    height: 50vh;
+  }
+  .logo{
+    width: 20vh;
+    height: 20vh;
+  }
+}
+@media screen and (max-width: 900px){
+  .course{
+    width: 70vw;
+    height: 20vh;
+  }
+  .logo{
+    width: 40vh;
+    height: 40vh;
+  }
+}
